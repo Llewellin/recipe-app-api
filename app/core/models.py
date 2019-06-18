@@ -88,3 +88,52 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Wonder(models.Model):
+    """"Wonder object"""
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        default=''
+    )
+    name = models.CharField(max_length=255)
+    category = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
+class Person(models.Model):
+    """Person object"""
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        default=''
+    )
+    name = models.CharField(max_length=255)
+    nationality = models.CharField(max_length=255)
+    type = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
+class Logbook(models.Model):
+    """Logbook object"""
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
+    title = models.CharField(max_length=255)
+    date = models.DateField()
+    spot = models.CharField(max_length=255)
+    point = models.CharField(max_length=255)
+    type = models.CharField(max_length=255)
+    duration = models.IntegerField(default=0)
+    wonders = models.ManyToManyField('Wonder')
+    people = models.ManyToManyField('Person')
+    # image = models.
+
+    def __str__(self):
+        return self.title

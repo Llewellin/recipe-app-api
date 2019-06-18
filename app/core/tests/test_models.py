@@ -85,3 +85,37 @@ class ModelTests(TestCase):
 
         exp_path = f'uploads/recipe/{uuid}.jpg'
         self.assertEqual(file_path, exp_path)
+
+    def test_wonder_str(self):
+        """Test Wonder string representation"""
+        wonder = models.Wonder.objects.create(
+            user=sample_user(),
+            name='manta ray',
+            category='animal'
+        )
+
+        self.assertEqual(str(wonder), wonder.name)
+
+    def test_person_str(self):
+        """Test Person string representation"""
+        person = models.Person.objects.create(
+            user=sample_user(),
+            name='alex',
+            nationality='taiwan',
+            type='buddy'
+        )
+
+        self.assertEqual(str(person), person.name)
+
+    def test_logbook_str(self):
+        """Test the logbook string representation"""
+        logbook = models.Logbook.objects.create(
+            user=sample_user(),
+            title='best ever',
+            date='2019-03-05',
+            spot='Moalboal',
+            point='siete pescados',
+            type='entry boat',
+        )
+
+        self.assertEqual(str(logbook), logbook.title)
